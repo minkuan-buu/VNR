@@ -67,7 +67,7 @@ export default function HomePage() {
       elementsRef.current.forEach((el, index) => {
         if (el) {
           const rect = el.getBoundingClientRect();
-          const isInView = rect.top >= 150 && rect.bottom <= window.innerHeight - 150;
+          const isInView = rect.top >= 30 && rect.bottom <= window.innerHeight - 100;
 
           if (isInView) {
             newTimelineIndex = index;
