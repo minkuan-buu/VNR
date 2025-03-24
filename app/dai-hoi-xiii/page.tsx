@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 const sections = [
   {
     date: "20 - 28/1/2016",
-    title: "Đại hội XII",
+    title: "Đại hội XIII",
     subtitle: "Diễn ra tại Hà Nội",
     description:
       "Bối Cảnh:<br/>- Tình hình thế giới biến động nhanh chóng với cuộc Cách mạng công nghiệp lần thứ tư. <br/>- Đánh dấu 30 năm Đổi mới, 5 năm thực hiện Cương lĩnh xây dựng đất nước và Chiến lược phát triển kinh tế - xã hội 2011 - 2020. <br/>- Việt Nam đạt nhiều thành tựu nhưng vẫn đối diện với thách thức về kinh tế, xã hội và quốc phòng. <br/> Nội dung chính: <br/>- Kiểm điểm thành quả, rút ra bài học sau 30 năm Đổi mới. <br/>- Xác định tiếp tục đổi mới mô hình tăng trưởng, cơ cấu lại nền kinh tế. <br/>- Bầu Ban Chấp hành Trung ương gồm 180 ủy viên chính thức, 20 ủy viên dự khuyết. <br/>- Đồng chí Nguyễn Phú Trọng tiếp tục được bầu làm Tổng Bí thư​.",
