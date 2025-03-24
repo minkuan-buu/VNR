@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'title';
+    src: url('/fonts/iCielBCMatchbookTxture-Regular.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'body';
+    src: url('/fonts/iCielBCOldStyle-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  

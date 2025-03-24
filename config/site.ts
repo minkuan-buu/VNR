@@ -16,14 +16,14 @@ export const siteConfig = {
       label: "Đại hội XIII",
       href: "/dai-hoi-xiii",
     },
-    // {
-    //   label: "Blog",
-    //   href: "/blog",
-    // },
-    // {
-    //   label: "About",
-    //   href: "/about",
-    // },
+    {
+      label: "Thành tựu",
+      href: "/thanh-tuu",
+    },
+    {
+      label: "Kinh Nghiệm",
+      href: "/kinh-nghiem",
+    },
   ],
   navMenuItems: [
     {
