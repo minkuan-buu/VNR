@@ -8,14 +8,14 @@ export const siteConfig = {
       label: "Trang chủ",
       href: "/",
     },
-    // {
-    //   label: "Đại hội X",
-    //   href: "/dai-hoi-x",
-    // },
-    // {
-    //   label: "Pricing",
-    //   href: "/pricing",
-    // },
+    {
+      label: "Đại hội XII",
+      href: "/dai-hoi-xii",
+    },
+    {
+      label: "Đại hội XIII",
+      href: "/dai-hoi-xiii",
+    },
     // {
     //   label: "Blog",
     //   href: "/blog",
