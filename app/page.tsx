@@ -6,7 +6,8 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { MdWorkOutline } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
-import DOMPurify from "dompurify";
+//const DOMPurify = require('dompurify');
+import parse from 'html-react-parser';
 
 import { Link } from "@heroui/link";
 import { Snippet } from "@heroui/snippet";
@@ -136,7 +137,9 @@ export default function HomePage() {
           {timelineData.map((item, index) => (
             <div
               key={index}
-              ref={(el) => (elementsRef.current[index] = el)}
+              ref={(el) => {
+                elementsRef.current[index] = el;
+              }}
               className="timeline-element min-h-[50vh]"
             >
               <VerticalTimelineElement
@@ -158,7 +161,7 @@ export default function HomePage() {
               >
                 <h3 className="vertical-timeline-element-title">{item.title}</h3>
                 <h4 className="vertical-timeline-element-subtitle">{item.subtitle}</h4>
-                <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.description) }}></p>
+                <p>{parse(item.description)}</p>
               </VerticalTimelineElement>
             </div>
           ))}
@@ -168,7 +171,7 @@ export default function HomePage() {
       {/* Section thành tựu và kinh nghiệm của công cuộc Đổi mới  */}
       <section className="w-full py-16 text-center bg-red-600 text-white">
         <h2 className="text-4xl font-bold uppercase tracking-widest">
-          
+
         </h2>
       </section>
     </div>

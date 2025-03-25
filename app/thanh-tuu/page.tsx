@@ -7,12 +7,12 @@ const sections = [
     date: "(1986 - 2018)",
     title: "Thành tựu của công cuộc Đổi mới",
     image: "https://cdn.thuvienphapluat.vn/uploads/tintuc/2024/11/15/quoc-hoi-bau-chu-tich-nuoc.jpg",
-  }, 
+  },
   {
     title: "Thành tựu về kinh tế",
     description:
       "Việt Nam thoát khỏi khủng hoảng kinh tế - xã hội kéo dài suốt thập niên 80.<br/>- Trước Đổi mới, kinh tế Việt Nam rơi vào khủng hoảng nghiêm trọng: lạm phát tăng cao, nhiều năm liền tăng trưởng âm, đời sống người dân cực kỳ khó khăn. <br/>- Đổi mới đã giúp Việt Nam vững vàng vượt qua giai đoạn khó khăn này. <br/> Tốc độ tăng trưởng ấn tượng: <br/>- Giai đoạn 1991 - 2010, GDP tăng trưởng bình quân khoảng 7%/năm, thuộc nhóm quốc gia có tốc độ tăng trưởng cao nhất thế giới. <br/>- Giai đoạn 2011 - 2018, dù kinh tế thế giới bất ổn, khủng hoảng tài chính toàn cầu, lạm phát trong nước cao, nợ xấu ngân hàng lớn... nhưng Việt Nam vẫn duy trì mức tăng trưởng 6-7%/năm nhờ nỗ lực ổn định kinh tế vĩ mô và tái cơ cấu nền kinh tế. <br/> Cơ cấu kinh tế chuyển dịch theo hướng công nghiệp hóa, hiện đại hóa: <br/>- Tỷ trọng nông nghiệp trong GDP giảm dần, công nghiệp và dịch vụ tăng lên rõ rệt. <br/>- Hình thành các ngành kinh tế mũi nhọn như dầu khí, viễn thông, công nghệ thông tin, điện tử.",
-  },       
+  },
   {
     title: "Thành tựu về kinh tế",
     description:
@@ -36,87 +36,87 @@ const sections = [
 ];
 
 export default function HomePage() {
-    const sectionRefs = useRef<(HTMLElement | null)[]>([]);
-    const [activeSection, setActiveSection] = useState<string>(sections[0].date || "");
-    const isScrolling = useRef(false);
-  
-    // 📌 Xử lý cuộn mượt mà
-    const handleScroll = useCallback(
-      (event: WheelEvent) => {
-        if (isScrolling.current) return;
-        isScrolling.current = true;
-    
-        requestAnimationFrame(() => {
-          isScrolling.current = false;
-        });
-    
-        // 🔥 Dùng index thay vì tìm theo `date`
-        const currentIndex = sections.findIndex((sec, idx) => idx === sectionRefs.current.findIndex(ref => ref?.getBoundingClientRect().top >= 0));
-        const direction = event.deltaY > 0 ? 1 : -1;
-        const nextIndex = currentIndex + direction;
-    
-        if (nextIndex >= 0 && nextIndex < sections.length) {
-          const nextSection = sectionRefs.current[nextIndex];
-    
-          if (nextSection) {
-            setActiveSection(sections[nextIndex].title); // Cập nhật active bằng title hoặc index
-            nextSection.scrollIntoView({ behavior: "smooth" });
-          }
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+  const [activeSection, setActiveSection] = useState<string>(sections[0].date || "");
+  const isScrolling = useRef(false);
+
+  // 📌 Xử lý cuộn mượt mà
+  const handleScroll = useCallback(
+    (event: WheelEvent) => {
+      if (isScrolling.current) return;
+      isScrolling.current = true;
+
+      requestAnimationFrame(() => {
+        isScrolling.current = false;
+      });
+
+      // 🔥 Dùng index thay vì tìm theo `date`
+      const currentIndex = sections.findIndex((sec, idx) => idx === sectionRefs.current.findIndex(ref => ref?.getBoundingClientRect().top >= 0));
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const nextIndex = currentIndex + direction;
+
+      if (nextIndex >= 0 && nextIndex < sections.length) {
+        const nextSection = sectionRefs.current[nextIndex];
+
+        if (nextSection) {
+          setActiveSection(sections[nextIndex].title); // Cập nhật active bằng title hoặc index
+          nextSection.scrollIntoView({ behavior: "smooth" });
         }
-      },
-      [activeSection]
-    );
-    
-  
-    useEffect(() => {
-      window.addEventListener("wheel", handleScroll, { passive: false });
-      return () => window.removeEventListener("wheel", handleScroll);
-    }, [handleScroll]);
-  
-    return (
-      <div className="relative flex flex-col">
-        {/* Dấu chấm điều hướng */}
-        <div className="fixed right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-3">
-          {sections.map((section, index) => (
-            <button
-              key={section.date}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                activeSection === section.date
-                  ? "bg-blue-500 scale-125"
-                  : "bg-gray-400"
-              }`}
-              onClick={() => {
-                setActiveSection(section.date);
-                sectionRefs.current[index]?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
-            />
-          ))}
-        </div>
-  
-        {/* Các section */}
+      }
+    },
+    [activeSection]
+  );
+
+
+  useEffect(() => {
+    window.addEventListener("wheel", handleScroll, { passive: false });
+    return () => window.removeEventListener("wheel", handleScroll);
+  }, [handleScroll]);
+
+  return (
+    <div className="relative flex flex-col">
+      {/* Dấu chấm điều hướng */}
+      <div className="fixed right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-3">
         {sections.map((section, index) => (
-          <section
+          <button
             key={section.date}
-            ref={(el) => (sectionRefs.current[index] = el)}
-            id={section.date}
-            className="h-screen flex flex-col items-center justify-center text-white text-center px-10 "
-            style={{
-              backgroundImage: section.image ? `url(${section.image})` : "none",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${activeSection === section.date
+                ? "bg-blue-500 scale-125"
+                : "bg-gray-400"
+              }`}
+            onClick={() => {
+              setActiveSection(section.date);
+              sectionRefs.current[index]?.scrollIntoView({
+                behavior: "smooth",
+              });
             }}
-          >
-            <h1 className="text-4xl font-bold font-cus_title bg-black bg-opacity-50 p-2 rounded-lg">{section.title}</h1>
-            <h2 className="text-xl text-gray-300 mt-2 bg-black bg-opacity-50 p-2 rounded-lg">{section.subtitle}</h2>
-            <p className="mt-4 text-lg font-light bg-black bg-opacity-50 p-2 rounded-lg">{section.date}</p>
-            <div
-              className="mt-6 text-lg text-gray-300 text-justify max-w-4xl font-cus_body bg-black bg-opacity-50 p-4 rounded-lg"
-              dangerouslySetInnerHTML={{ __html: section.description }}
-            />
-          </section>
+          />
         ))}
       </div>
-    );
-  }
+
+      {/* Các section */}
+      {sections.map((section, index) => (
+        <section
+          key={section.date}
+          ref={(el) => {
+            sectionRefs.current[index] = el;
+          }}
+          id={section.date}
+          className="h-screen flex flex-col items-center justify-center text-white text-center px-10 "
+          style={{
+            backgroundImage: section.image ? `url(${section.image})` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <h1 className="text-4xl font-bold font-cus_title bg-black bg-opacity-50 p-2 rounded-lg">{section.title}</h1>
+          <p className="mt-4 text-lg font-light bg-black bg-opacity-50 p-2 rounded-lg">{section.date}</p>
+          <div
+            className="mt-6 text-lg text-gray-300 text-justify max-w-4xl font-cus_body bg-black bg-opacity-50 p-4 rounded-lg"
+            dangerouslySetInnerHTML={{ __html: section.description }}
+          />
+        </section>
+      ))}
+    </div>
+  );
+}

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, LegacyRef } from "react";
 
 
 const sections = [
@@ -51,28 +51,36 @@ export default function HomePage() {
     (event: WheelEvent) => {
       if (isScrolling.current) return;
       isScrolling.current = true;
-  
+
       requestAnimationFrame(() => {
         isScrolling.current = false;
       });
-  
+
       // 🔥 Dùng index thay vì tìm theo `date`
-      const currentIndex = sections.findIndex((sec, idx) => idx === sectionRefs.current.findIndex(ref => ref?.getBoundingClientRect().top >= 0));
+      const validRefs = sectionRefs.current.filter(ref => ref !== null);
+      const currentIndex = sections.findIndex(
+        (sec, idx) =>
+          idx ===
+          validRefs.findIndex(
+            (ref) => (ref as unknown as HTMLElement).getBoundingClientRect().top >= 0,
+          )
+      );
+
       const direction = event.deltaY > 0 ? 1 : -1;
       const nextIndex = currentIndex + direction;
-  
+
       if (nextIndex >= 0 && nextIndex < sections.length) {
         const nextSection = sectionRefs.current[nextIndex];
-  
+
         if (nextSection) {
           setActiveSection(sections[nextIndex].title); // Cập nhật active bằng title hoặc index
-          nextSection.scrollIntoView({ behavior: "smooth" });
+          (nextSection as unknown as HTMLElement).scrollIntoView({ behavior: "smooth" });
         }
       }
     },
     [activeSection]
   );
-  
+
 
   useEffect(() => {
     window.addEventListener("wheel", handleScroll, { passive: false });
@@ -86,14 +94,13 @@ export default function HomePage() {
         {sections.map((section, index) => (
           <button
             key={section.date}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              activeSection === section.date
-                ? "bg-blue-500 scale-125"
-                : "bg-gray-400"
-            }`}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${activeSection === section.date
+              ? "bg-blue-500 scale-125"
+              : "bg-gray-400"
+              }`}
             onClick={() => {
               setActiveSection(section.date);
-              sectionRefs.current[index]?.scrollIntoView({
+              (sectionRefs.current[index] as unknown as HTMLElement)?.scrollIntoView({
                 behavior: "smooth",
               });
             }}
@@ -105,7 +112,9 @@ export default function HomePage() {
       {sections.map((section, index) => (
         <section
           key={section.date}
-          ref={(el) => (sectionRefs.current[index] = el)}
+          ref={(el) => {
+            sectionRefs.current[index] = el;
+          }}
           id={section.date}
           className="h-screen flex flex-col items-center justify-center text-white text-center px-10 "
           style={{
