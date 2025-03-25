@@ -4,36 +4,40 @@ import { useEffect, useRef, useState, useCallback } from "react";
 
 const sections = [
   {
-    date: "20 - 28/1/2016",
+    date: "25/1 - 1/2/2021",
     title: "Đại hội XIII",
     subtitle: "Diễn ra tại Hà Nội",
+    image: "https://tapchimoitruong.vn/uploads/082021/image001_52afa047.jpg",
+  },
+  {
+    title: "Bối Cảnh & Nội Dung",
     description:
-      "Bối Cảnh:<br/>- Tình hình thế giới biến động nhanh chóng với cuộc Cách mạng công nghiệp lần thứ tư. <br/>- Đánh dấu 30 năm Đổi mới, 5 năm thực hiện Cương lĩnh xây dựng đất nước và Chiến lược phát triển kinh tế - xã hội 2011 - 2020. <br/>- Việt Nam đạt nhiều thành tựu nhưng vẫn đối diện với thách thức về kinh tế, xã hội và quốc phòng. <br/> Nội dung chính: <br/>- Kiểm điểm thành quả, rút ra bài học sau 30 năm Đổi mới. <br/>- Xác định tiếp tục đổi mới mô hình tăng trưởng, cơ cấu lại nền kinh tế. <br/>- Bầu Ban Chấp hành Trung ương gồm 180 ủy viên chính thức, 20 ủy viên dự khuyết. <br/>- Đồng chí Nguyễn Phú Trọng tiếp tục được bầu làm Tổng Bí thư​.",
+      "Bối Cảnh:<br/>- Đất nước đứng trước nhiều cơ hội và thách thức như biến đổi khí hậu, dịch bệnh (đặc biệt là đại dịch COVID-19). <br/>- Thành tựu nổi bật sau 35 năm đổi mới, tạo nền tảng để phát triển trong giai đoạn mới. <br/> Nội dung chính: <br/>- Chủ đề Đại hội: “Tăng cường xây dựng, chỉnh đốn Đảng và hệ thống chính trị trong sạch, vững mạnh; khơi dậy khát vọng phát triển đất nước; phát huy ý chí, sức mạnh đại đoàn kết toàn dân tộc kết hợp với sức mạnh thời đại; tiếp tục đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới; xây dựng và bảo vệ vững chắc Tổ quốc; giữ vững môi trường hòa bình, ổn định; phấn đấu đến giữa thế kỷ XXI, nước ta trở thành nước phát triển, theo định hướng xã hội chủ nghĩa.” <br/>- Bầu Ban Chấp hành Trung ương khóa XIII gồm 200 đồng chí (180 ủy viên chính thức, 20 ủy viên dự khuyết). <br/>- Đồng chí Nguyễn Phú Trọng tiếp tục được bầu làm Tổng Bí thư​.",
   },
   {
     title: "Mục tiêu và nhiệm vụ ",
     description:
-      "Mục Tiêu:<br/>- Tăng cường xây dựng Đảng trong sạch, vững mạnh, nâng cao năng lực lãnh đạo và sức chiến đấu của Đảng, xây dựng hệ thống chính trị vững mạnh. <br/>- Phát huy sức mạnh toàn dân tộc và dân chủ xã hội chủ nghĩa. Đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới; phát triển kinh tế nhanh, bền vững, phấn đấu sớm đưa nước ta cơ bản trở thành nước công nghiệp theo hướng hiện đại. <br/>- Nâng cao đời sống vật chất và tinh thần của Nhân dân. Kiên quyết, kiên trì đấu tranh bảo vệ vững chắc độc lập, chủ quyền, thống nhất, toàn vẹn lãnh thổ của Tổ quốc, bảo vệ Đảng, Nhà nước, Nhân dân và chế độ xã hội chủ nghĩa. <br/>- Giữ gìn hoà bình, ổn định, chủ động và tích cực hội nhập quốc tế để phát triển đất nước; nâng cao vị thế và uy tín của Việt Nam trong khu vực và trên thế giới.",
+      "Mục Tiêu:<br/>- Đến năm 2025, kỷ niệm 50 năm giải phóng hoàn toàn miền Nam, thống nhất đất nước: Là nước đang phát triển, có công nghiệp theo hướng hiện đại, vượt qua mức thu nhập trung bình thấp. <br/>- Đến năm 2030, kỷ niệm 100 năm thành lập Đảng: Là nước đang phát triển, có công nghiệp hiện đại, thu nhập trung bình cao. <br/>- Đến năm 2045, kỷ niệm 100 năm thành lập nước Việt Nam Dân chủ Cộng hòa, nay là nước Cộng hòa xã hội chủ nghĩa Việt Nam: Trở thành nước phát triển, thu nhập cao.",
   },
   {
     title: "Mục tiêu và nhiệm vụ ",
     description:
-      "Nhiệm Vụ: <br/>-Xây dựng, chỉnh đốn Đảng: Kiên quyết ngăn chặn suy thoái tư tưởng, đạo đức, lối sống và các biểu hiện “tự diễn biến”, “tự chuyển hóa”. Tập trung xây dựng đội ngũ cán bộ, nhất là cán bộ cấp chiến lược, có phẩm chất và năng lực. <br/>- Cải cách bộ máy và phòng chống tham nhũng: Tinh gọn bộ máy hệ thống chính trị, nâng cao hiệu lực, hiệu quả hoạt động; đấu tranh chống tham nhũng, lãng phí và quan liêu. <br/>- Phát triển kinh tế và công nghiệp hóa: Nâng cao chất lượng tăng trưởng, năng suất lao động và sức cạnh tranh; thực hiện ba đột phá chiến lược; đổi mới mô hình tăng trưởng; công nghiệp hóa, hiện đại hóa, đặc biệt trong nông nghiệp và nông thôn. Cải cách doanh nghiệp nhà nước, ngân sách và xử lý nợ công. <br/>-Giữ vững độc lập, chủ quyền: Kiên trì bảo vệ toàn vẹn lãnh thổ, giữ vững an ninh, trật tự xã hội; mở rộng quan hệ đối ngoại, nâng cao vị thế quốc tế của đất nước. <br/>- Phát huy nguồn lực nhân dân: Chăm lo đời sống nhân dân, đảm bảo an sinh xã hội, tăng cường phúc lợi và giảm nghèo bền vững; phát huy quyền làm chủ và sức mạnh đại đoàn kết toàn dân tộc. <br/>- Phát triển con người và văn hóa: Đề cao nhân tố con người trong phát triển xã hội; chú trọng đạo đức, nhân cách, lối sống, trí tuệ; xây dựng môi trường văn hóa lành mạnh.",
+      "Nhiệm Vụ: <br/>Xây dựng, chỉnh đốn Đảng: <br/>- Nâng cao năng lực lãnh đạo, đổi mới phương thức cầm quyền. <br/>- Kiện toàn bộ máy tinh gọn, hiệu lực, hiệu quả. <br/>- Chống tham nhũng, quan liêu, 'lợi ích nhóm' <br/>-Xây dựng đội ngũ cán bộ đủ phẩm chất, năng lực, uy tín. <br/>Kiểm soát dịch bệnh, phục hồi và phát triển kinh tế - xã hội: <br/>- Tiêm chủng đại trà, kiểm soát đại dịch Covid-19. <br/>- Đổi mới mô hình tăng trưởng, phát triển kinh tế số. <br/>- Hoàn thiện thể chế kinh tế, tăng năng suất, nâng cao sức cạnh tranh. <br/>Giữ vững độc lập, tăng cường quốc phòng - an ninh, đối ngoại: <br/>- Phát triển quân đội, công an cách mạng, chính quy, hiện đại. <br/>- Bảo vệ chủ quyền biển, đảo, giữ vững hòa bình, ổn định. <br/>- Phát triển quan hệ đối ngoại đa chiều, đa phương.Đẩy mạnh hội nhập quốc tế, nâng cao vị thế đất nước.",
+  },
+  {
+    title: "Thực hiện đường lối Đại hội XIII các nghị quyết",
+    description:
+      "01 - 04/10/2021: Hội nghị Trung ương 4 khóa XIII thông qua 2 nghị quyết quan trọng: <br/>- Nghị quyết về xây dựng, chỉnh đốn Đảng và hệ thống chính trị: Tiếp tục đẩy mạnh công tác phòng, chống tham nhũng, suy thoái tư tưởng chính trị, đạo đức, lối sống trong nội bộ. <br/>- Nghị quyết về phát triển kinh tế - xã hội: Định hướng phục hồi kinh tế sau đại dịch COVID-19, thúc đẩy chuyển đổi số, phát triển nền kinh tế số và kinh tế xanh. <br/>04 - 10/5/2022: Hội nghị Trung ương 5 khóa XIII ban hành 3 nghị quyết trọng điểm: <br/>- Nghị quyết về đất đai: Hoàn thiện chính sách, pháp luật về đất đai, đảm bảo sử dụng đất đai hiệu quả, minh bạch. <br/>- Nghị quyết về phát triển kinh tế tập thể: Khuyến khích mô hình hợp tác xã kiểu mới, hỗ trợ doanh nghiệp nhỏ và vừa phát triển bền vững. <br/>- Nghị quyết về nông nghiệp, nông dân, nông thôn: Đẩy mạnh công nghiệp hóa nông nghiệp, nâng cao thu nhập và đời sống nông dân.",
   },
   {
     title: "Thực hiện đường lối Đại hội XII các nghị quyết",
     description:
-      "09 - 14/10/2016: Hội nghị lần thứ tư BCHTW quyết định ban hành 3 Nghị quyết <br/>- Nghị quyết về tăng cường xây dựng, chỉnh đốn Đảng; ngăn chặn đẩy lùi sự suy thoái về tư tưởng chính trị, đạo đức, lối sống, những biểu hiện tự diễn biến, tự chuyển hóa trong nội bộ <br/>- Nghị quyết về một số chủ trương, chính sách lớn nhằm tiếp tục đổi mới mô hình tăng trưởng, nâng cao chất lượng tăng trưởng, năng suất lao động và sức cạnh tranh của nền kinh tế <br/>- Nghị quyết về thực hiện hiệu quả tiến trình hội nhập kinh tế quốc tế, giữ vững ổn định chính trị - Xã hội trong bối cảnh nước ta tham gia các hiệp định thương mại tự do thế hệ mới. <br/>05 - 10/5/2017: Hội nghị lần thứ năm BCHTW quyết định ban hành 3 Nghị quyết <br/>- Nghị quyết về phát triển kinh tế tư nhân trở thành một động lực quan trọng của nền kinh tế thị trường định hướng xã hội chủ nghĩa <br/>- Nghị quyết về hoàn thiện thể chế kinh tế thị trường định hướng xã hội chủ nghĩa <br/>- Nghị quyết về tiếp tục cơ cấu lại, đổi mới và nâng cao hiệu quả doanh nghiệp nhà nước.",
-  },
-  {
-    title: "Thực hiện đường lối Đại hội XII các nghị quyết",
-    description:
-      "<br/> 04/10 - 11/10/2017, Hội nghị lần thứ sáu đã quyết nghị ban hành 4 Nghị quyết <br/>- Nghị quyết một số vấn đề về tiếp tục đổi mới, sắp xếp tổ chức bộ máy của hệ thống chính trị tinh gọn, hoạt động hiệu lực, hiệu quả <br/>- Nghị quyết về tiếp tục đổi mới hệ thống tổ chức và quản lý, nâng cao chất lượng và hiệu quả hoạt động của các đơn vị sự nghiệp công lập. <br/>- Nghị quyết về tăng cường công tác bảo vệ, chăm sóc và nâng cao sức khoẻ nhân dân trong tình hình mới. <br/> 07/5 - 12/5/2018, Hội nghị lần thứ bảy BCHTW đã quyết nghị ban hành 3 nghị quyết <br/>- Nghị quyết về tập trung xây dựng đội ngũ cán bộ các cấp, nhất là cấp chiến lược đủ phẩm chất, năng lực và uy tín, ngang tầm nhiệm vụ. <br/>- Nghị quyết về cải cách chính sách tiền lương đối với cán bộ, công chức, viên chức, lực lượng vũ trang và người lao động trong doanh nghiệp. <br/>- Nghị quyết về cải cách chính sách bảo hiểm xã hội",
+      "03 - 09/10/2022: Hội nghị Trung ương 6 khóa XIII thông qua 4 nghị quyết: <br/>- Nghị quyết về tiếp tục xây dựng và hoàn thiện Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam: Định hướng cải cách tư pháp, nâng cao chất lượng lập pháp. <br/>- Nghị quyết về đổi mới và nâng cao hiệu quả hoạt động của các đơn vị sự nghiệp công lập: Nâng cao chất lượng dịch vụ công, đẩy mạnh tự chủ tài chính. <br/>- Nghị quyết về chăm sóc sức khỏe nhân dân: Củng cố hệ thống y tế cơ sở, bảo vệ sức khỏe cộng đồng. <br/>- Nghị quyết về chiến lược bảo vệ Tổ quốc trong tình hình mới: Tăng cường quốc phòng, an ninh, bảo vệ chủ quyền lãnh thổ.",
   },
   {
     title: "Ý nghĩa và tác động",
     description:
-      "- Đại hội XII đánh dấu bước chuyển đổi mạnh mẽ trong tư duy phát triển kinh tế và hội nhập quốc tế.<br/>- Tiếp tục khẳng định quyết tâm đổi mới toàn diện, đồng bộ, hướng đến mục tiêu nước công nghiệp theo hướng hiện đại. <br/>Nhấn mạnh việc nâng cao chất lượng tăng trưởng, cải cách thể chế, phát triển nguồn nhân lực và đổi mới sáng tạo. <br/>- Tạo nền tảng để tiếp tục triển khai các chính sách quan trọng tại Đại hội XIII.",
+      "- Tiếp tục công cuộc đổi mới: Đại hội XIII khẳng định quyết tâm đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới, hướng tới mục tiêu trở thành nước phát triển vào năm 2045. <br/>- Phục hồi kinh tế sau đại dịch: Đưa ra các chính sách hỗ trợ phục hồi kinh tế, thúc đẩy chuyển đổi số, công nghiệp hóa, hiện đại hóa. <br/>- Nâng cao vị thế đất nước: Mở rộng quan hệ đối ngoại, tích cực hội nhập quốc tế, bảo vệ lợi ích quốc gia - dân tộc. <br/>- Đẩy mạnh công tác xây dựng, chỉnh đốn Đảng: Tăng cường kỷ luật Đảng, nâng cao năng lực lãnh đạo và sức chiến đấu. <br/>- Chăm lo đời sống nhân dân: Đẩy mạnh an sinh xã hội, nâng cao đời sống vật chất và tinh thần, đảm bảo phát triển bền vững.",
   },
 ];
 
@@ -103,13 +107,18 @@ export default function HomePage() {
           key={section.date}
           ref={(el) => (sectionRefs.current[index] = el)}
           id={section.date}
-          className="h-screen flex flex-col items-center justify-center bg-black text-white text-center px-10 "
+          className="h-screen flex flex-col items-center justify-center text-white text-center px-10 "
+          style={{
+            backgroundImage: section.image ? `url(${section.image})` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          <h1 className="text-4xl font-bold font-cus_title">{section.title}</h1>
-          <h2 className="text-xl text-gray-400 mt-2">{section.subtitle}</h2>
-          <p className="mt-4 text-lg font-light">{section.date}</p>
+          <h1 className="text-4xl font-bold font-cus_title bg-black bg-opacity-50 p-2 rounded-lg">{section.title}</h1>
+          <h2 className="text-xl text-gray-300 mt-2 bg-black bg-opacity-50 p-2 rounded-lg">{section.subtitle}</h2>
+          <p className="mt-4 text-lg font-light bg-black bg-opacity-50 p-2 rounded-lg">{section.date}</p>
           <div
-            className="mt-6 text-lg text-gray-300 text-justify max-w-4xl font-cus_body"
+            className="mt-6 text-lg text-gray-300 text-justify max-w-4xl font-cus_body bg-black bg-opacity-50 p-4 rounded-lg"
             dangerouslySetInnerHTML={{ __html: section.description }}
           />
         </section>

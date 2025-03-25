@@ -168,7 +168,7 @@ export default function HomePage() {
       {/* Section thành tựu và kinh nghiệm của công cuộc Đổi mới  */}
       <section className="w-full py-16 text-center bg-red-600 text-white">
         <h2 className="text-4xl font-bold uppercase tracking-widest">
-          Thành tựu và kinh nghiệm của công cuộc Đổi mới (1986 - 2018)
+          
         </h2>
       </section>
     </div>
