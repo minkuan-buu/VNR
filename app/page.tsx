@@ -6,7 +6,8 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { MdWorkOutline } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
-import DOMPurify from "dompurify";
+//const DOMPurify = require('dompurify');
+import parse from 'html-react-parser';
 
 import { Link } from "@heroui/link";
 import { Snippet } from "@heroui/snippet";
@@ -17,6 +18,7 @@ import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import { info } from "console";
+import Image from "next/image";
 
 const timelineData = [
   {
@@ -130,13 +132,14 @@ export default function HomePage() {
         </h2>
       </section>
 
-
       <section className="min-h-screen min-w-full flex items-center justify-center py-16 md:py-24">
         <VerticalTimeline>
           {timelineData.map((item, index) => (
             <div
               key={index}
-              ref={(el) => (elementsRef.current[index] = el)}
+              ref={(el) => {
+                elementsRef.current[index] = el;
+              }}
               className="timeline-element min-h-[50vh]"
             >
               <VerticalTimelineElement
@@ -158,7 +161,7 @@ export default function HomePage() {
               >
                 <h3 className="vertical-timeline-element-title">{item.title}</h3>
                 <h4 className="vertical-timeline-element-subtitle">{item.subtitle}</h4>
-                <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.description) }}></p>
+                <p>{parse(item.description)}</p>
               </VerticalTimelineElement>
             </div>
           ))}
@@ -168,8 +171,67 @@ export default function HomePage() {
       {/* Section thành tựu và kinh nghiệm của công cuộc Đổi mới  */}
       <section className="w-full py-16 text-center bg-red-600 text-white">
         <h2 className="text-4xl font-bold uppercase tracking-widest">
-          
+          Tìm hiểu thêm
         </h2>
+      </section>
+
+      <section
+        className="relative w-full h-screen flex flex-col items-center justify-center text-white bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://imgnvsk.vnanet.vn/MediaUpload/Content/2024/01/19/z5085604077580-b9b36aa6411149611722cc8dafa7db7319-10-26-58.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.8,
+        }}
+      >
+        <div className="flex flex-row gap-4">
+          {[
+            {
+              link: "/dai-hoi-xii",
+              src: "https://daihoi13.dangcongsan.vn/Uploads/Images/2020/10/2/29/toan-canh-dai-hoi.jpg",
+              text: "Đại hội XII",
+            },
+            {
+              link: "/dai-hoi-xiii",
+              src: "https://tapchimoitruong.vn/uploads/082021/image001_52afa047.jpg",
+              text: "Đại hội XIII",
+            },
+            {
+              link: "/thanh-tuu",
+              src: "https://cdn.thuvienphapluat.vn/uploads/tintuc/2024/11/15/quoc-hoi-bau-chu-tich-nuoc.jpg",
+              text: "Thành tựu",
+            },
+            {
+              link: "/kinh-nghiem",
+              src: "https://media.vov.vn/sites/default/files/styles/large/public/2021-01/Kien%20dinh%20.jpg",
+              text: "Kinh nghiệm",
+            },
+            {
+              link: "/van-de-tham-nhung",
+              src: "https://cdnmedia.baotintuc.vn/Upload/c2tvplmdloSDblsn03qN2Q/files/2021/09/28/phong-chong-tham-nhung-28921.jpg",
+              text: "Vấn đề tham nhũng",
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="flex flex-col gap-4 items-center cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onClick={() => (window.location.href = item.link)}
+            >
+              <img
+                className="rounded-xl w-[300px] h-[200px] hover:scale-105 transition-transform duration-300"
+                alt={item.text}
+                src={item.src}
+                width={300}
+                height={200}
+              />
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );
