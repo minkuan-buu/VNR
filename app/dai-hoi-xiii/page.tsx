@@ -43,39 +43,55 @@ const sections = [
 
 export default function HomePage() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
-  const [activeSection, setActiveSection] = useState<string>(sections[0].date || "");
+  const [activeSection, setActiveSection] = useState<number>(0);
   const isScrolling = useRef(false);
 
-  // 📌 Xử lý cuộn mượt mà
-  const handleScroll = useCallback(
-    (event: WheelEvent) => {
-      if (isScrolling.current) return;
-      isScrolling.current = true;
+  // 📌 Xác định section hiển thị khi load trang
+  useEffect(() => {
+    const checkActiveSection = () => {
+      const validRefs = sectionRefs.current.filter(ref => ref !== null);
+      const index = validRefs.findIndex(
+        (ref) => (ref as HTMLElement).getBoundingClientRect().top >= 0
+      );
 
-      requestAnimationFrame(() => {
-        isScrolling.current = false;
-      });
-
-      // 🔥 Dùng index thay vì tìm theo `date`
-      const currentIndex = sections.findIndex((sec, idx) => idx === sectionRefs.current.findIndex(ref => ref?.getBoundingClientRect().top >= 0));
-      const direction = event.deltaY > 0 ? 1 : -1;
-      const nextIndex = currentIndex + direction;
-
-      if (nextIndex >= 0 && nextIndex < sections.length) {
-        const nextSection = sectionRefs.current[nextIndex];
-
-        if (nextSection) {
-          setActiveSection(sections[nextIndex].title); // Cập nhật active bằng title hoặc index
-          nextSection.scrollIntoView({ behavior: "smooth" });
-        }
+      if (index !== -1) {
+        setActiveSection(index);
       }
-    },
-    [activeSection]
-  );
+    };
 
+    // Gọi hàm kiểm tra ngay khi trang load
+    checkActiveSection();
+
+    // Cập nhật lại khi resize
+    window.addEventListener("resize", checkActiveSection);
+    return () => window.removeEventListener("resize", checkActiveSection);
+  }, []);
+
+  // 📌 Xử lý cuộn mượt mà
+  const handleScroll = useCallback((event: WheelEvent) => {
+    if (isScrolling.current) return;
+    isScrolling.current = true;
+
+    requestAnimationFrame(() => {
+      isScrolling.current = false;
+    });
+
+    const validRefs = sectionRefs.current.filter(ref => ref !== null);
+    const currentIndex = validRefs.findIndex(
+      (ref) => (ref as HTMLElement).getBoundingClientRect().top >= 0
+    );
+
+    const direction = event.deltaY > 0 ? 1 : -1;
+    const nextIndex = currentIndex + direction;
+
+    if (nextIndex >= 0 && nextIndex < sections.length) {
+      setActiveSection(nextIndex);
+      validRefs[nextIndex]?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
   useEffect(() => {
-    window.addEventListener("wheel", handleScroll, { passive: false });
+    window.addEventListener("wheel", handleScroll);
     return () => window.removeEventListener("wheel", handleScroll);
   }, [handleScroll]);
 
@@ -85,13 +101,13 @@ export default function HomePage() {
       <div className="fixed right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-3">
         {sections.map((section, index) => (
           <button
-            key={section.date}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${activeSection === section.date
-                ? "bg-blue-500 scale-125"
-                : "bg-gray-400"
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${activeSection === index
+              ? "bg-blue-500 scale-125"
+              : "bg-gray-400"
               }`}
             onClick={() => {
-              setActiveSection(section.date);
+              setActiveSection(index);
               sectionRefs.current[index]?.scrollIntoView({
                 behavior: "smooth",
               });
@@ -103,11 +119,11 @@ export default function HomePage() {
       {/* Các section */}
       {sections.map((section, index) => (
         <section
-          key={section.date}
+          key={index}
           ref={(el) => {
             sectionRefs.current[index] = el;
           }}
-          id={section.date}
+          id={index.toFixed()}
           className="h-screen flex flex-col items-center justify-center text-white text-center px-10 "
           style={{
             backgroundImage: section.image ? `url(${section.image})` : "none",

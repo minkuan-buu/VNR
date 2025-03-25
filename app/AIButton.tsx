@@ -10,7 +10,7 @@ import {
     useDisclosure
 } from "@heroui/modal";
 import { Input } from "@heroui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 export interface ChatModel {
@@ -59,6 +59,18 @@ export default function AIButton() {
         setMessage(""); // Xóa input sau khi gửi
     };
 
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+
+        return () => {
+            document.body.classList.remove("overflow-hidden");
+        };
+    }, [isOpen]);
+
     return (
         <div className="fixed bottom-5 right-5">
             <Modal isOpen={isOpen} placement="bottom" onOpenChange={onOpenChange}>
@@ -71,7 +83,7 @@ export default function AIButton() {
                                 {response.map((item, index) => (
                                     <div
                                         key={index}
-                                        className={`max-w-[80%] p-2 rounded-lg 
+                                        className={`max-w-[80%] py-2 px-4 rounded-lg 
                                             ${item.author === "user"
                                                 ? "bg-blue-500 text-white self-end"
                                                 : "bg-gray-200 text-black self-start"

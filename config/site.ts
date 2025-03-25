@@ -25,8 +25,8 @@ export const siteConfig = {
       href: "/kinh-nghiem",
     },
     {
-      label: "Tham Nhũng",
-      href: "/tham-nhung",
+      label: "Vấn Đề Tham Nhũng",
+      href: "/van-de-tham-nhung",
     },
   ],
   navMenuItems: [
