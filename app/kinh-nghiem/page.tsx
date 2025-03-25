@@ -12,26 +12,31 @@ const sections = [
     title: "Xây dựng, chỉnh đốn Đảng",
     description:
       "Triển khai quyết liệt, toàn diện về chính trị, tư tưởng, đạo đức, tổ chức và cán bộ, kiểm soát chặt chẽ quyền lực, phòng chống tham nhũng, suy thoái, xây dựng đội ngũ cán bộ chiến lược, đề cao trách nhiệm nêu gương.",
+      image: "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00NTItZi0wMTQuanBn.jpg",
   },
   {
     title: "Lấy dân làm gốc",
     description:
       "Quán triệt quan điểm “dân là gốc”, đảm bảo dân chủ thực chất, nhân dân là trung tâm và chủ thể của đổi mới, hạnh phúc, ấm no của nhân dân là mục tiêu phấn đấu.",
+      image: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA0L3JtNTI2LWJnLTAyYS5qcGc.jpg",
   },
   {
     title: "Lãnh đạo, tổ chức thực hiện",
     description:
       "Hành động quyết liệt, sáng tạo, đề cao trách nhiệm người đứng đầu, kết hợp chặt chẽ lý luận và thực tiễn, tạo đột phá phát triển.",
+      image: "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00NTItZi0wMTMuanBn.jpg",
   },
   {
     title: "Thể chế và mối quan hệ phát triển",
     description:
       "Xây dựng thể chế đồng bộ, cân bằng giữa đổi mới và ổn định, kinh tế và xã hội, hội nhập và độc lập, phát huy vai trò của giáo dục, khoa học, công nghệ.",
+      image: "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00NTItYi0wMDFjLmpwZw.jpg",
   },
   {
     title: "Quốc phòng, an ninh, đối ngoại",
     description:
       "Chủ động dự báo tình hình, không để bị động, bất ngờ, kiên quyết bảo vệ chủ quyền, giữ vững môi trường hòa bình, hội nhập quốc tế toàn diện, tận dụng thời cơ phát triển",
+      image: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA0L3JtNTI2LWJnLTEyYS5qcGc.jpg",
   },
 ];
 
@@ -125,10 +130,10 @@ export default function HomePage() {
             backgroundPosition: "center",
           }}
         >
-          <h1 className="text-4xl font-bold font-cus_title bg-black bg-opacity-50 p-2 rounded-lg">{section.title}</h1>
+          <h1 className="text-5xl font-bold font-cus_title bg-black bg-opacity-50 p-2 rounded-lg">{section.title}</h1>
           <p className="mt-4 text-lg font-light bg-black bg-opacity-50 p-2 rounded-lg">{section.date}</p>
           <div
-            className="mt-6 text-lg text-gray-300 text-justify max-w-4xl font-cus_body bg-black bg-opacity-50 p-4 rounded-lg"
+            className="mt-6 text-2xl text-gray-300 text-justify max-w-4xl font-cus_body bg-black bg-opacity-50 p-4 rounded-lg"
             dangerouslySetInnerHTML={{ __html: section.description }}
           />
         </section>
