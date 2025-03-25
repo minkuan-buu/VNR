@@ -60,16 +60,23 @@ export default function AIButton() {
     };
 
     useEffect(() => {
+        const handleWheel = (event: WheelEvent) => {
+            if (isOpen) {
+                event.preventDefault();
+            }
+        };
+
         if (isOpen) {
-            document.body.classList.add("overflow-hidden");
+            window.removeEventListener("wheel", handleWheel);
         } else {
-            document.body.classList.remove("overflow-hidden");
+            window.addEventListener("wheel", handleWheel, { passive: false });
         }
 
         return () => {
-            document.body.classList.remove("overflow-hidden");
+            window.removeEventListener("wheel", handleWheel);
         };
     }, [isOpen]);
+
 
     return (
         <div className="fixed bottom-5 right-5">
