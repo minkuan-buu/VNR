@@ -7,6 +7,10 @@ const sections = [
     date: "20 - 28/1/2016",
     title: "Đại hội XII",
     subtitle: "Diễn ra tại Hà Nội",
+    image: "https://daihoi13.dangcongsan.vn/Uploads/Images/2020/10/2/29/toan-canh-dai-hoi.jpg",
+  },
+  {
+    title: "Bối cảnh & Nội Dung",
     description:
       "Bối Cảnh:<br/>- Tình hình thế giới biến động nhanh chóng với cuộc Cách mạng công nghiệp lần thứ tư. <br/>- Đánh dấu 30 năm Đổi mới, 5 năm thực hiện Cương lĩnh xây dựng đất nước và Chiến lược phát triển kinh tế - xã hội 2011 - 2020. <br/>- Việt Nam đạt nhiều thành tựu nhưng vẫn đối diện với thách thức về kinh tế, xã hội và quốc phòng. <br/> Nội dung chính: <br/>- Kiểm điểm thành quả, rút ra bài học sau 30 năm Đổi mới. <br/>- Xác định tiếp tục đổi mới mô hình tăng trưởng, cơ cấu lại nền kinh tế. <br/>- Bầu Ban Chấp hành Trung ương gồm 180 ủy viên chính thức, 20 ủy viên dự khuyết. <br/>- Đồng chí Nguyễn Phú Trọng tiếp tục được bầu làm Tổng Bí thư​.",
   },
@@ -103,13 +107,18 @@ export default function HomePage() {
           key={section.date}
           ref={(el) => (sectionRefs.current[index] = el)}
           id={section.date}
-          className="h-screen flex flex-col items-center justify-center bg-black text-white text-center px-10 "
+          className="h-screen flex flex-col items-center justify-center text-white text-center px-10 "
+          style={{
+            backgroundImage: section.image ? `url(${section.image})` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          <h1 className="text-4xl font-bold font-cus_title">{section.title}</h1>
-          <h2 className="text-xl text-gray-400 mt-2">{section.subtitle}</h2>
-          <p className="mt-4 text-lg font-light">{section.date}</p>
+          <h1 className="text-4xl font-bold font-cus_title bg-black bg-opacity-50 p-2 rounded-lg">{section.title}</h1>
+          <h2 className="text-xl text-gray-300 mt-2 bg-black bg-opacity-50 p-2 rounded-lg">{section.subtitle}</h2>
+          <p className="mt-4 text-lg font-light bg-black bg-opacity-50 p-2 rounded-lg">{section.date}</p>
           <div
-            className="mt-6 text-lg text-gray-300 text-justify max-w-4xl font-cus_body"
+            className="mt-6 text-lg text-gray-300 text-justify max-w-4xl font-cus_body bg-black bg-opacity-50 p-4 rounded-lg"
             dangerouslySetInnerHTML={{ __html: section.description }}
           />
         </section>
