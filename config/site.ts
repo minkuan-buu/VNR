@@ -28,6 +28,10 @@ export const siteConfig = {
       label: "Vấn Đề Tham Nhũng",
       href: "/van-de-tham-nhung",
     },
+    {
+      label: "Câu Hỏi CQ",
+      href: "/cau-hoi",
+    },
   ],
   navMenuItems: [
     {
