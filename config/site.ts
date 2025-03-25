@@ -24,6 +24,10 @@ export const siteConfig = {
       label: "Kinh Nghiệm",
       href: "/kinh-nghiem",
     },
+    {
+      label: "Tham Nhũng",
+      href: "/tham-nhung",
+    },
   ],
   navMenuItems: [
     {
