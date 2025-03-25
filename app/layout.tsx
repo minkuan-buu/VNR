@@ -8,6 +8,9 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import { MdSmartToy } from "react-icons/md";
+import { Button } from "@heroui/button";
+import AIButton from "./AIButton";
 
 export const metadata: Metadata = {
   title: {
@@ -52,6 +55,8 @@ export default function RootLayout({
                 Made by Group 8
               </p>
             </footer>
+            {/* Nút AI ở góc dưới bên phải */}
+            <AIButton /> {/* Nút AI */}
           </div>
         </Providers>
       </body>
