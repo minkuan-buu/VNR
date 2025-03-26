@@ -35,7 +35,7 @@ export default function AIButton() {
         // Hiển thị hiệu ứng AI đang suy nghĩ
         setResponse((prev) => [...prev, { author: "ai", message: "..." }]);
 
-        var prompt = `Hãy trả lời câu hỏi liên quan đến Đảng lãnh đạo cả nước quá độ lên chủ nghĩa xã hội và tiến hành công cuộc đổi mới. Nếu không liên quan, trả lời 'Xin lỗi, tôi không thể trả lời câu hỏi không liên quan'. Câu hỏi: ${message}`;
+        var prompt = `Hãy trả lời câu hỏi liên quan đến Đảng lãnh đạo cả nước quá độ lên chủ nghĩa xã hội và tiến hành công cuộc đổi mới hoặc những câu hỏi liên quan trong môn học lịch sử Đảng. Nếu không liên quan, trả lời 'Xin lỗi, tôi không thể trả lời câu hỏi không liên quan'. Câu hỏi: ${message}`;
 
         try {
             const res = await fetch("https://vnr.buubuu.id.vn/api/chat", {
