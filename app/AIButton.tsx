@@ -10,7 +10,7 @@ import {
     useDisclosure
 } from "@heroui/modal";
 import { Input } from "@heroui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 export interface ChatModel {
@@ -59,6 +59,25 @@ export default function AIButton() {
         setMessage(""); // Xóa input sau khi gửi
     };
 
+    useEffect(() => {
+        const handleWheel = (event: WheelEvent) => {
+            if (isOpen) {
+                event.preventDefault();
+            }
+        };
+
+        if (isOpen) {
+            window.removeEventListener("wheel", handleWheel);
+        } else {
+            window.addEventListener("wheel", handleWheel, { passive: false });
+        }
+
+        return () => {
+            window.removeEventListener("wheel", handleWheel);
+        };
+    }, [isOpen]);
+
+
     return (
         <div className="fixed bottom-5 right-5">
             <Modal isOpen={isOpen} placement="bottom" onOpenChange={onOpenChange}>
@@ -71,7 +90,7 @@ export default function AIButton() {
                                 {response.map((item, index) => (
                                     <div
                                         key={index}
-                                        className={`max-w-[80%] p-2 rounded-lg 
+                                        className={`max-w-[80%] py-2 px-4 rounded-lg 
                                             ${item.author === "user"
                                                 ? "bg-blue-500 text-white self-end"
                                                 : "bg-gray-200 text-black self-start"

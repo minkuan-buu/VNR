@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + HeroUI",
+  name: "VNR",
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
@@ -25,8 +25,12 @@ export const siteConfig = {
       href: "/kinh-nghiem",
     },
     {
-      label: "Tham Nhũng",
-      href: "/tham-nhung",
+      label: "Vấn Đề Tham Nhũng",
+      href: "/van-de-tham-nhung",
+    },
+    {
+      label: "Câu Hỏi CQ",
+      href: "/cau-hoi",
     },
   ],
   navMenuItems: [
